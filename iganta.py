@@ -4,12 +4,17 @@ from kivy.lang import Builder
 from MenuScreen import MenuScreen
 from screens.DailyRoutineScreen import DailyRoutineScreen
 from screens.StrategicGoalsScreen import StrategicGoalsScreen
+from objects.Task import TaskLoader
 
 Builder.load_file('MenuScreen.kv') 
 Builder.load_file('.\screens\DailyRoutineScreen.kv') 
 Builder.load_file('.\screens\StrategicGoalsScreen.kv') 
 
+
+
 class igantaApp(App):
+	taskLoader = TaskLoader()
+	
 	def build(self):
 		sm = ScreenManager()
 		sm.add_widget(MenuScreen(name = 'MenuScreen'))
