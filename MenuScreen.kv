@@ -1,0 +1,26 @@
+<MenuScreen>:
+    BoxLayout:
+		TabbedPanel:
+			do_default_tab: False
+			tab_width: self.parent.width / 6 - 1
+			TabbedPanelItem:
+	        	text: 'DailyRoutine'
+
+                DailyRoutineScreen:
+            
+            TabbedPanelItem:
+	        	text: 'StrategicGoals'
+
+                StrategicGoalsScreen:
+
+            TabbedPanelItem:
+	        	text: 'Other'
+
+            TabbedPanelItem:
+	        	text: 'Analytics'
+
+            TabbedPanelItem:
+	        	text: 'Archive'
+
+            TabbedPanelItem:
+	        	text: 'Settings'
