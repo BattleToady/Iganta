@@ -3,6 +3,7 @@
         root.clear_add_task_fields(self)
         root.ids.layout_task_bucket.clear_widgets()
         root.fill_bucket_list()
+        root.togle_layout_visibility(False)
     ScrollView:
         BoxLayout:
             orientation: 'vertical'
@@ -87,6 +88,7 @@
                     id: layout_task_bucket
                     cols: 8
                     row_default_height: 30
+                    height: self.minimum_height
 
             GridLayout:
                 size_hint: 1, None
@@ -212,7 +214,9 @@
                 rows:1
                 cols:2
                 size_hint: 1, None
-                row_default_height: 30
+                row_default_height: 25
+                height: 25
+                id: layout_add_task
 
                 Button:
                     text: 'Add'
@@ -225,18 +229,23 @@
                 rows:1
                 cols:3
                 size_hint: 1, None
-                row_default_height: 30
+                row_default_height: 25
+                height: 25
+                id: layout_task_modification
 
                 Button:
                     text: 'Save'
                     on_press: root.save_button_clicked(self)
                 Button:
                     text: 'Delete'
-                    on_press: root.delete_button_clicked(self)
+                    on_press: 
+                        root.delete_button_clicked(self)
+                        root.togle_layout_visibility(False)
                 Button:
                     text: 'Cancel'
-                    on_press: root.clear_add_task_fields(self)
-
+                    on_press: 
+                        root.clear_add_task_fields(self)
+                        root.togle_layout_visibility(False)
 
             BoxLayout:
             

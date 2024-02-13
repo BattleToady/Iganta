@@ -65,6 +65,7 @@ class ToDoListScreen(Screen):
 
         self.ids.slider_duration.value = selected_task['duration'][0] + 0.01*selected_task['duration'][1]*100/60
 
+        self.togle_layout_visibility(True)
         print(selected_task)
 
     def importance_button_clicked(self, importance, button):
@@ -77,6 +78,28 @@ class ToDoListScreen(Screen):
 
         global IMPORTANCE_SELECTED
         IMPORTANCE_SELECTED = importance
+
+    def togle_layout_visibility(self, pr):
+        if(pr):
+            self.ids.layout_add_task.visible = False
+            self.ids.layout_add_task.opacity = 0
+            self.ids.layout_add_task.size_x = 0
+            self.ids.layout_add_task.height = 0
+
+            self.ids.layout_task_modification.visible = True
+            self.ids.layout_task_modification.opacity = 1
+            self.ids.layout_task_modification.size_hint_x = 1
+            self.ids.layout_task_modification.height = 25
+        else:
+            self.ids.layout_add_task.visible = True
+            self.ids.layout_add_task.opacity = 1
+            self.ids.layout_add_task.size_hint_x = 1
+            self.ids.layout_add_task.height = 0
+
+            self.ids.layout_task_modification.visible = False
+            self.ids.layout_task_modification.opacity = 0
+            self.ids.layout_task_modification.size_x = 0
+            self.ids.layout_task_modification.height = 25
 
     def difficulty_button_clicked(self, difficulty, button):
         difficiculty_buttons = [self.ids.button_difficulty_1, self.ids.button_difficulty_2, self.ids.button_difficulty_3, self.ids.button_difficulty_4, self.ids.button_difficulty_5]
@@ -165,7 +188,7 @@ class ToDoListScreen(Screen):
 
         frac, whole = math.modf(self.ids.slider_duration.value)
         frac_part = f'{frac*60/100:1.2f}'.replace('0.', '')
-        
+
         global selected_task
         selected_task['name'] = self.ids.textinputTask.text
         selected_task['description'] = self.ids.textinputTaskDescription.text

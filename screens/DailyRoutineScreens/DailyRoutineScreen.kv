@@ -1,16 +1,65 @@
 <DailyRoutineScreen>:
 	BoxLayout:
-        canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
         ScrollView:
             BoxLayout:
                 size_hint: 1, 1.7
                 orientation: 'vertical'
+
+                GridLayout:
+                    size_hint: 1, None
+                    rows: 3
+                    cols: 8
+
+                    CheckBox:
+                    
+                    Label:
+                        text: 'name1'
+                    Label:
+                        text: 'tag'
+                    Label:
+                        text: 'impor'
+                    Label:
+                        text: 'dur'
+                    Label:
+                        text: 'dif'
+                    Label:
+                        text: 'deadline'
+                    Button:
+                        text: 'Remove'
+
+                    CheckBox:
+                    
+                    Label:
+                        text: 'task-create some stuf'
+                    Label:
+                        text: 'work'
+                    Label:
+                        text: '4'
+                    Label:
+                        text: '3'
+                    Label:
+                        text: '3'
+                    Label:
+                        text: '14.02 15:00'
+                    Button:
+                        text: 'Remove'
+
+                    CheckBox:
+                    
+                    Label:
+                        text: 'write article'
+                    Label:
+                        text: 'science'
+                    Label:
+                        text: '4'
+                    Label:
+                        text: '5'
+                    Label:
+                        text: '3'
+                    Label:
+                        text: '20.02 19:00'
+                    Button:
+                        text: 'Remove'
 
                 Button:
                     size_hint: 1, None
