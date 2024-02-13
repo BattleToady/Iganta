@@ -1,0 +1,245 @@
+<ToDoListScreen>:
+    ScrollView:
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, 2
+            
+            Button:
+                size_hint: 1,None
+                height: 25
+                text: '<'
+                on_press: app.get_running_app().root.current = 'MenuScreen'
+
+            Label:
+                size_hint: 1, None
+                height: 25
+                text: 'To-Do List:'
+
+            GridLayout:
+                size_hint: 1, None
+                rows: 3
+                cols: 8
+
+                CheckBox:
+                
+                Label:
+                    text: 'name1'
+                Label:
+                    text: 'tag'
+                Label:
+                    text: 'impor'
+                Label:
+                    text: 'dur'
+                Label:
+                    text: 'dif'
+                Label:
+                    text: 'deadline'
+                Button:
+                    text: 'Remove'
+
+                CheckBox:
+                
+                Label:
+                    text: 'task-create some stuf'
+                Label:
+                    text: 'work'
+                Label:
+                    text: '4'
+                Label:
+                    text: '3'
+                Label:
+                    text: '3'
+                Label:
+                    text: '14.02 15:00'
+                Button:
+                    text: 'Remove'
+
+                CheckBox:
+                
+                Label:
+                    text: 'write article'
+                Label:
+                    text: 'science'
+                Label:
+                    text: '4'
+                Label:
+                    text: '5'
+                Label:
+                    text: '3'
+                Label:
+                    text: '20.02 19:00'
+                Button:
+                    text: 'Remove'
+
+            Label:
+                size_hint: 1, None
+                height: 25
+                text: 'To-Do Bucket:'
+
+            GridLayout:
+                size_hint: 1, None
+                rows: 3
+                cols: 8
+
+                CheckBox:
+                
+                Label:
+                    text: 'name1'
+                Label:
+                    text: 'tag'
+                Label:
+                    text: 'impor'
+                Label:
+                    text: 'dur'
+                Label:
+                    text: 'dif'
+                Label:
+                    text: 'deadline'
+                Button:
+                    text: 'Add'
+
+                CheckBox:
+                
+                Label:
+                    text: 'task-create some stuf'
+                Label:
+                    text: 'work'
+                Label:
+                    text: '4'
+                Label:
+                    text: '3'
+                Label:
+                    text: '3'
+                Label:
+                    text: '14.02 15:00'
+                Button:
+                    text: 'Add'
+
+                CheckBox:
+
+                Label:
+                    text: 'write article'
+                Label:
+                    text: 'science'
+                Label:
+                    text: '4'
+                Label:
+                    text: '5'
+                Label:
+                    text: '3'
+                Label:
+                    text: '20.02 19:00'
+                Button:
+                    text: 'Add'
+
+            GridLayout:
+                size_hint: 1, None
+                height: 25
+                rows: 1
+                cols: 6
+
+                Label:
+                    text: 'Sort by:'
+                Button:
+                    text: 'importance'
+                Button:
+                    text: 'deadline'   
+                Button:
+                    text: 'difficulty'
+                Button:
+                    text: 'duration'
+                Button:
+                    text: 'weighted mean'
+
+            Label:
+                size_hint: 1, None
+                height: 25
+                text: 'Add Task:'
+            GridLayout:
+                size_hint: 1, None
+                rows: 2
+                cols: 2
+                row_default_height: 25
+
+                Label:
+                    text: 'Add to list forward?'
+                CheckBox:
+
+                Label:
+                    text: 'task:'
+                TextInput:
+                    hint_text: 'task'
+            GridLayout:
+                size_hint: 1, None
+                rows: 1
+                cols: 2
+                height: 150
+
+
+                Label:
+                    text: 'description:'
+                TextInput:
+                    hint_text: 'description'
+            
+            GridLayout:
+                size_hint: 1, None
+                rows: 3
+                cols: 6
+                row_default_height: 25
+
+                Label:
+                    text: 'importance:'
+                Button:
+                    text: '1'
+                Button:
+                    text: '2'
+                Button:
+                    text: '3'
+                Button:
+                    text: '4'
+                Button:
+                    text: '5'
+
+                Label:
+                    text: 'difficulty:'
+                Button:
+                    text: '1'
+                Button:
+                    text: '2'
+                Button:
+                    text: '3'
+                Button:
+                    text: '4'
+                Button:
+                    text: '5'
+
+                Label:
+                    text: 'duration:'
+                Button:
+                    text: '1'
+                Button:
+                    text: '2'
+                Button:
+                    text: '3'
+                Button:
+                    text: '4'
+                Button:
+                    text: '5'
+
+            GridLayout:
+                rows:1
+                cols:2
+                size_hint: 1, None
+                height: 35
+
+                Button:
+                    text: 'Add'
+                Button:
+                    text: 'Clear'
+
+            BoxLayout:
+            
+
+
+
+            

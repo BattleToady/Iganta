@@ -20,18 +20,18 @@ class Task():
 class TaskLoader():
     DATA_PATH = '.\\data\\tasks'
     def __init__(self):
-        self.tasks = TaskLoader.read()
+        self.read()
 
-    def read():
+    def read(self):
         if('tasks.json' not in os.listdir('.\\data')):
             with open('.\\data\\tasks.json', 'w') as file:
                 json.dump([], file)
-            return []
+            self.tasks = []
         else:
             with open('.\\data\\tasks.json', 'r') as file:
-                return json.load(file)
+                self.tasks = json.load(file)
             
-    def save():
+    def save(self):
         with open('.\\data\\tasks.json', 'w') as file:
                 json.dump(self.tasks, file)
 
