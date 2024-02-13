@@ -1,4 +1,8 @@
 <ToDoListScreen>:
+    on_enter:
+        root.clear_add_task_fields(self)
+        root.ids.layout_task_bucket.clear_widgets()
+        root.fill_bucket_list()
     ScrollView:
         BoxLayout:
             orientation: 'vertical'
@@ -76,61 +80,13 @@
                 height: 25
                 text: 'To-Do Bucket:'
 
-            GridLayout:
-                size_hint: 1, None
-                rows: 3
-                cols: 8
-
-                CheckBox:
-                
-                Label:
-                    text: 'name1'
-                Label:
-                    text: 'tag'
-                Label:
-                    text: 'impor'
-                Label:
-                    text: 'dur'
-                Label:
-                    text: 'dif'
-                Label:
-                    text: 'deadline'
-                Button:
-                    text: 'Add'
-
-                CheckBox:
-                
-                Label:
-                    text: 'task-create some stuf'
-                Label:
-                    text: 'work'
-                Label:
-                    text: '4'
-                Label:
-                    text: '3'
-                Label:
-                    text: '3'
-                Label:
-                    text: '14.02 15:00'
-                Button:
-                    text: 'Add'
-
-                CheckBox:
-
-                Label:
-                    text: 'write article'
-                Label:
-                    text: 'science'
-                Label:
-                    text: '4'
-                Label:
-                    text: '5'
-                Label:
-                    text: '3'
-                Label:
-                    text: '20.02 19:00'
-                Button:
-                    text: 'Add'
+            ScrollView:
+                size_hint: 1, 0.5
+                GridLayout:
+                    size_hint: 1, None
+                    id: layout_task_bucket
+                    cols: 8
+                    row_default_height: 30
 
             GridLayout:
                 size_hint: 1, None
@@ -164,78 +120,123 @@
                 Label:
                     text: 'Add to list forward?'
                 CheckBox:
+                    id: checkboxAddListForward
 
                 Label:
                     text: 'task:'
                 TextInput:
                     hint_text: 'task'
+                    id: textinputTask
             GridLayout:
                 size_hint: 1, None
                 rows: 1
                 cols: 2
                 height: 150
 
-
                 Label:
                     text: 'description:'
                 TextInput:
                     hint_text: 'description'
+                    id: textinputTaskDescription
             
             GridLayout:
                 size_hint: 1, None
-                rows: 3
+                rows: 2
                 cols: 6
                 row_default_height: 25
 
                 Label:
                     text: 'importance:'
                 Button:
+                    id: button_importance_1
                     text: '1'
+                    on_press: root.importance_button_clicked(1, self)
                 Button:
+                    id: button_importance_2
                     text: '2'
+                    on_press: root.importance_button_clicked(2, self)
                 Button:
+                    id: button_importance_3
                     text: '3'
+                    on_press: root.importance_button_clicked(3, self)
                 Button:
+                    id: button_importance_4
                     text: '4'
+                    on_press: root.importance_button_clicked(4, self)
                 Button:
+                    id: button_importance_5
                     text: '5'
+                    on_press: root.importance_button_clicked(5, self)
 
                 Label:
                     text: 'difficulty:'
                 Button:
+                    id: button_difficulty_1
                     text: '1'
+                    on_press: root.difficulty_button_clicked(1, self)
                 Button:
+                    id: button_difficulty_2
                     text: '2'
+                    on_press: root.difficulty_button_clicked(2, self)
                 Button:
+                    id: button_difficulty_3
                     text: '3'
+                    on_press: root.difficulty_button_clicked(3, self)
                 Button:
+                    id: button_difficulty_4
                     text: '4'
+                    on_press: root.difficulty_button_clicked(4, self)
                 Button:
+                    id: button_difficulty_5
                     text: '5'
+                    on_press: root.difficulty_button_clicked(5, self)
+            GridLayout:
+                size_hint: 1, None
+                rows: 1
+                cols: 3
+                row_default_height: 25
 
                 Label:
                     text: 'duration:'
-                Button:
-                    text: '1'
-                Button:
-                    text: '2'
-                Button:
-                    text: '3'
-                Button:
-                    text: '4'
-                Button:
-                    text: '5'
+                Slider:
+                    id: slider_duration
+                    min: 0
+                    max: 12
+                    step: 0.25/3
+                    on_value: root.slider_duration_value_changed(self)
+                Label:
+                    id: label_slider_value
+                    text: '0:00'
 
             GridLayout:
                 rows:1
                 cols:2
                 size_hint: 1, None
-                height: 35
+                row_default_height: 30
 
                 Button:
                     text: 'Add'
+                    on_press: root.add_button_clicked(self)
                 Button:
                     text: 'Clear'
+                    on_press: root.clear_add_task_fields(self)
+
+            GridLayout:
+                rows:1
+                cols:3
+                size_hint: 1, None
+                row_default_height: 30
+
+                Button:
+                    text: 'Save'
+                    on_press: root.save_button_clicked(self)
+                Button:
+                    text: 'Delete'
+                    on_press: root.delete_button_clicked(self)
+                Button:
+                    text: 'Cancel'
+                    on_press: root.clear_add_task_fields(self)
+
 
             BoxLayout:
             
