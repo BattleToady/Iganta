@@ -1,20 +1,14 @@
 from kivy.uix.screenmanager import Screen
 from objects.ToDoList import ToDoList
 from kivy.uix.label import Label
-from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
 from objects.Task import TaskLoader
-from functools import partial
-from kivy.clock import Clock
 
 
 
 class DailyRoutineScreen(Screen):
-    def on_enter(self):
-        Clock.schedule_once(self.fill_todo_list)
 
     def fill_todo_list(self):
-        print('fill to do list')
         self.ids.todo_list_layout.clear_widgets()
         loader = TaskLoader()
         todoList = ToDoList()

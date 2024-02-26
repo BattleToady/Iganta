@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
 from datetime import datetime
 from objects.ToDoList import ToDoList
+from kivy.app import App
 
 from functools import partial
 

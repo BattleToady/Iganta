@@ -1,4 +1,5 @@
 <MenuScreen>:
+	on_enter: self.ids.dailyRoutineScreen.fill_todo_list()
 	TabbedPanel:
 		do_default_tab: False
 
@@ -6,6 +7,7 @@
 		TabbedPanelItem:
 			text: 'DailyRoutine'
 			DailyRoutineScreen:
+				id: dailyRoutineScreen
 				
 		
 		TabbedPanelItem:
