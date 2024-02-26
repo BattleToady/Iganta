@@ -4,6 +4,8 @@
         root.ids.layout_task_bucket.clear_widgets()
         root.fill_bucket_list()
         root.togle_layout_visibility(False)
+        root.refreshDatePicker()
+        root.fill_todo_list()
     ScrollView:
         BoxLayout:
             orientation: 'vertical'
@@ -21,60 +23,10 @@
                 text: 'To-Do List:'
 
             GridLayout:
+                id: todo_list_layout
                 size_hint: 1, None
-                rows: 3
                 cols: 8
 
-                CheckBox:
-                
-                Label:
-                    text: 'name1'
-                Label:
-                    text: 'tag'
-                Label:
-                    text: 'impor'
-                Label:
-                    text: 'dur'
-                Label:
-                    text: 'dif'
-                Label:
-                    text: 'deadline'
-                Button:
-                    text: 'Remove'
-
-                CheckBox:
-                
-                Label:
-                    text: 'task-create some stuf'
-                Label:
-                    text: 'work'
-                Label:
-                    text: '4'
-                Label:
-                    text: '3'
-                Label:
-                    text: '3'
-                Label:
-                    text: '14.02 15:00'
-                Button:
-                    text: 'Remove'
-
-                CheckBox:
-                
-                Label:
-                    text: 'write article'
-                Label:
-                    text: 'science'
-                Label:
-                    text: '4'
-                Label:
-                    text: '5'
-                Label:
-                    text: '3'
-                Label:
-                    text: '20.02 19:00'
-                Button:
-                    text: 'Remove'
 
             Label:
                 size_hint: 1, None
@@ -82,7 +34,7 @@
                 text: 'To-Do Bucket:'
 
             ScrollView:
-                size_hint: 1, 0.5
+                size_hint: 1, 0.35
                 GridLayout:
                     size_hint: 1, None
                     id: layout_task_bucket
@@ -210,6 +162,37 @@
                     id: label_slider_value
                     text: '0:00'
 
+            BoxLayout:
+                orientation: 'horizontal'
+
+                Label:
+                    text: 'Select a date'
+                    size_hint: 0.5, None
+                    height: 40
+
+                CheckBox:
+
+                Spinner:
+                    id: year_spinner
+                    text: '2000'
+                    size_hint: 0.3, None
+                    height: 40
+                    on_text: root.update_date_label()
+
+                Spinner:
+                    id: month_spinner
+                    text: '06'
+                    size_hint: 0.3, None
+                    height: 40
+                    on_text: root.update_date_label()
+
+                Spinner:
+                    id: day_spinner
+                    text: '2'
+                    size_hint: 0.2, None
+                    height: 40
+                    on_text: root.update_date_label()
+
             GridLayout:
                 rows:1
                 cols:2
@@ -246,7 +229,7 @@
                     on_press: 
                         root.clear_add_task_fields(self)
                         root.togle_layout_visibility(False)
-
+            
             BoxLayout:
             
 

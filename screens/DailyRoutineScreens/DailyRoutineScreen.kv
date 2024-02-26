@@ -1,72 +1,37 @@
 <DailyRoutineScreen>:
-	BoxLayout:
+    on_enter: root.fill_todo_list()
+    BoxLayout:
         ScrollView:
             BoxLayout:
-                size_hint: 1, 1.7
+                size_hint: 1, 1
                 orientation: 'vertical'
 
-                GridLayout:
-                    size_hint: 1, None
-                    rows: 3
-                    cols: 8
-
-                    CheckBox:
-                    
-                    Label:
-                        text: 'name1'
-                    Label:
-                        text: 'tag'
-                    Label:
-                        text: 'impor'
-                    Label:
-                        text: 'dur'
-                    Label:
-                        text: 'dif'
-                    Label:
-                        text: 'deadline'
-                    Button:
-                        text: 'Remove'
-
-                    CheckBox:
-                    
-                    Label:
-                        text: 'task-create some stuf'
-                    Label:
-                        text: 'work'
-                    Label:
-                        text: '4'
-                    Label:
-                        text: '3'
-                    Label:
-                        text: '3'
-                    Label:
-                        text: '14.02 15:00'
-                    Button:
-                        text: 'Remove'
-
-                    CheckBox:
-                    
-                    Label:
-                        text: 'write article'
-                    Label:
-                        text: 'science'
-                    Label:
-                        text: '4'
-                    Label:
-                        text: '5'
-                    Label:
-                        text: '3'
-                    Label:
-                        text: '20.02 19:00'
-                    Button:
-                        text: 'Remove'
+                ScrollView:
+                    GridLayout:
+                        id: todo_list_layout
+                        size_hint: 1, None
+                        cols: 7
 
                 Button:
                     size_hint: 1, None
                     height: 35
-                    text: 'To-Do List'
+                    pos_hint: {"center_x": .5, "center_y": .5}
                     on_press: app.get_running_app().root.current = 'ToDoListScreen'
+                    text: 'To-Do List'
 
-                BoxLayout:
+                GridLayout:
+                    rows: 1
+                    cols: 2
+                    height: 50
+                    row_default_height:50
 
+                    Button:
+                        text: 'Make Diary Record'
+
+                    Button:
+                        text: 'Add New Idea'
+
+                Button:
+                    height: 50
+                    text: 'Day Summary(End Day)'
                 

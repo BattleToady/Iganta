@@ -20,8 +20,6 @@ class igantaApp(App):
 	
 		sm = ScreenManager()
 		sm.add_widget(MenuScreen(name = 'MenuScreen'))
-		sm.add_widget(DailyRoutineScreen(name = 'DailyRoutineScreen'))
-		sm.add_widget(StrategicGoalsScreen(name = 'StrategicGoalsScreen'))
 		sm.add_widget(ToDoListScreen(name = 'ToDoListScreen'))
 		return sm
 

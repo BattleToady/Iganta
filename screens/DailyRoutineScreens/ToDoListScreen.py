@@ -6,14 +6,80 @@ from datetime import datetime
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
+from datetime import datetime
+from objects.ToDoList import ToDoList
+
 from functools import partial
 
 IMPORTANCE_SELECTED = 3
 DIFFICULTY_SELECTED = 3
 loader = TaskLoader()
+todoList = ToDoList()
 selected_task = None
+selected_date = str(datetime.now().year) + '-' + str(datetime.now().strftime('%m')) + '-' + str(datetime.now().day)
 
 class ToDoListScreen(Screen):
+    def refreshDatePicker(self):
+        self.ids.year_spinner.text = str(datetime.now().year)
+        self.ids.year_spinner.values = [str(year) for year in range(datetime.now().year, datetime.now().year+5)]
+
+        self.ids.month_spinner.text = str(datetime.now().strftime('%m'))
+        self.ids.month_spinner.values = [datetime.strptime(str(i), '%m').strftime('%m') for i in range(1, 13)]
+
+        self.ids.day_spinner.text = str(datetime.now().day)
+        self.ids.day_spinner.values = [str(day) for day in range(1, 32)]
+
+    def update_date_label(self):
+        year = int(self.ids.year_spinner.text)
+        month = datetime.strptime(self.ids.month_spinner.text, '%m').month
+        
+        days_in_month = (datetime(year, month % 12 + 1, 1) - datetime(year, month, 1)).days
+        self.ids.day_spinner.values = []
+        self.ids.day_spinner.values = [str(day) for day in range(1, days_in_month + 1)]
+        day = int(self.ids.day_spinner.text)
+        
+        global selected_date
+        selected_date = datetime(year, month, day).strftime('%Y-%m-%d')
+
+    def fill_todo_list(self):
+        self.ids.todo_list_layout.clear_widgets()
+        global loader
+        global todoList
+        for task in loader.tasks:
+            if(task['id'] in todoList.tasks):
+                checkbox = CheckBox()
+                self.ids.todo_list_layout.add_widget(checkbox)
+
+                name_button = Button()
+                name_button.text = task['name']
+                name_button.bind(on_press = partial(self.task_button_clicked, task['id']))
+                self.ids.todo_list_layout.add_widget(name_button)
+
+                tag_label = Label()
+                tag_label.text = task['tag']
+                self.ids.todo_list_layout.add_widget(tag_label)
+
+                importance_label = Label()
+                importance_label.text = str(task['importance'])
+                self.ids.todo_list_layout.add_widget(importance_label)
+
+                difficulty_label = Label()
+                difficulty_label.text = str(task['difficulty'])
+                self.ids.todo_list_layout.add_widget(difficulty_label)
+
+                duration_label = Label()
+                duration_label.text = f'{task['duration'][0]}:{task['duration'][1]}'
+                self.ids.todo_list_layout.add_widget(duration_label)
+
+                deadline_label = Label()
+                deadline_label.text = str(task['deadline'])
+                self.ids.todo_list_layout.add_widget(deadline_label)
+
+                add_button = Button()
+                add_button.text = 'Remove'
+                self.ids.todo_list_layout.add_widget(add_button)
+                add_button.bind(on_press = partial(self.remove_from_list_button_clicked, task['id']))
+    
     def fill_bucket_list(self):
         global loader
         for task in loader.tasks:
@@ -48,6 +114,15 @@ class ToDoListScreen(Screen):
             add_button = Button()
             add_button.text = 'Add'
             self.ids.layout_task_bucket.add_widget(add_button)
+            add_button.bind(on_press = partial(self.add_to_list_button_clicked, task['id']))
+
+    def add_to_list_button_clicked(self, task_id, button):
+        todoList.add_task(task_id)
+        self.fill_todo_list()
+
+    def remove_from_list_button_clicked(self, task_id, button):
+        todoList.remove_task(task_id)
+        self.fill_todo_list()
 
     def task_button_clicked(self, task_id, button):
         global loader
@@ -66,7 +141,6 @@ class ToDoListScreen(Screen):
         self.ids.slider_duration.value = selected_task['duration'][0] + 0.01*selected_task['duration'][1]*100/60
 
         self.togle_layout_visibility(True)
-        print(selected_task)
 
     def importance_button_clicked(self, importance, button):
         importance_buttons = [self.ids.button_importance_1, self.ids.button_importance_2, self.ids.button_importance_3, self.ids.button_importance_4, self.ids.button_importance_5]
@@ -80,7 +154,7 @@ class ToDoListScreen(Screen):
         IMPORTANCE_SELECTED = importance
 
     def togle_layout_visibility(self, pr):
-        if(pr):
+        '''if(pr):
             self.ids.layout_add_task.visible = False
             self.ids.layout_add_task.opacity = 0
             self.ids.layout_add_task.size_x = 0
@@ -99,7 +173,7 @@ class ToDoListScreen(Screen):
             self.ids.layout_task_modification.visible = False
             self.ids.layout_task_modification.opacity = 0
             self.ids.layout_task_modification.size_x = 0
-            self.ids.layout_task_modification.height = 25
+            self.ids.layout_task_modification.height = 25'''
 
     def difficulty_button_clicked(self, difficulty, button):
         difficiculty_buttons = [self.ids.button_difficulty_1, self.ids.button_difficulty_2, self.ids.button_difficulty_3, self.ids.button_difficulty_4, self.ids.button_difficulty_5]
@@ -155,12 +229,13 @@ class ToDoListScreen(Screen):
         frac, whole = math.modf(self.ids.slider_duration.value)
         frac_part = f'{frac*60/100:1.2f}'.replace('0.', '')
 
+        global selected_date
         global loader
         loader.addTask(
             name = self.ids.textinputTask.text,
             description = self.ids.textinputTaskDescription.text,
             tag = '',
-            deadline = None,
+            deadline = selected_date,
             duration = (int(whole), int(frac_part)),
             difficulty = DIFFICULTY_SELECTED,
             importance = IMPORTANCE_SELECTED,
@@ -190,12 +265,14 @@ class ToDoListScreen(Screen):
         frac_part = f'{frac*60/100:1.2f}'.replace('0.', '')
 
         global selected_task
+        global selected_date
         selected_task['name'] = self.ids.textinputTask.text
         selected_task['description'] = self.ids.textinputTaskDescription.text
         selected_task['tag'] = ''
         selected_task['deadline'] = None
         selected_task['duration'] = (int(whole), int(frac_part))
         selected_task['difficulty'] = DIFFICULTY_SELECTED
+        selected_task['deadline'] = selected_date
         selected_task['importance'] = IMPORTANCE_SELECTED
         selected_task['period'] = None
         selected_task['creationdate'] = datetime.now().strftime('%Y-%m-%d')
