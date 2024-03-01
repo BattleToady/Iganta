@@ -22,8 +22,11 @@ class DiaryCalendarScreen(Screen):
 
 		self.selected_date = current_date
 
+		self.buttons = []
+
 	def upgrade_calendar(self):
 		calendar_widget = self.ids.calendar
+		self.buttons = []
 
 		calendar_widget.clear_widgets()
 
@@ -36,7 +39,6 @@ class DiaryCalendarScreen(Screen):
 
 		days_range = monthrange(self.current_year, self.current_month)
 
-		print(days_range)
 		for i in range(days_range[0]):
 			none_label = Label(text = '')
 			calendar_widget.add_widget(none_label)
@@ -44,11 +46,15 @@ class DiaryCalendarScreen(Screen):
 		for i in range(1, days_range[1] + 1):
 			
 			if(i == self.current_day):
-				day_button = Button(text = str(i), background_color =(0.1, 0.8, 0.1, 1))
+				if((self.current_month == date.today().month) and (self.current_year == date.today().year)):
+					day_button = Button(text = str(i), background_color =(0.1, 0.8, 0.1, 1))
+				else:
+					day_button = Button(text = str(i))
 			else:
 				day_button = Button(text = str(i))
 			calendar_widget.add_widget(day_button)
-			#day_button.bind(on_press = partial(self.day_button_press, i))
+			day_button.bind(on_press = partial(self.day_button_press, i))
+			self.buttons.append(day_button)
 
 	def turn_left(self):
 		self.current_month -= 1
@@ -79,3 +85,22 @@ class DiaryCalendarScreen(Screen):
 		self.current_month = current_date.month
 		self.current_year = current_date.year
 		self.upgrade_calendar()
+
+	def day_button_press(self, day, button):
+		
+		self.selected_date = date(self.current_year, self.current_month, day)
+
+		#df = pd.read_csv('./data/diary.csv')
+		#data = df[df.date == str(selected_date)]
+		#if(len(data) != 0):
+			#self.ids.RecordTextField.text = data.iloc[0]['record']
+		#else:
+			#self.ids.RecordTextField.text = ''
+
+		self.ids.ChoosenDateLabel.text = str(self.selected_date.day) + '-' + calendar.month_abbr[self.selected_date.month] + ' ' + str(self.selected_date.year) + ':'
+		
+		for but in self.buttons:
+			but.background_color = (0.95, 0.95, 0.95, 1)
+			if((but.text == str(self.current_day)) and (self.current_month == date.today().month) and (self.current_year == date.today().year)):
+				but.background_color = (0.1, 0.8, 0.1, 1)
+		button.background_color  = (0.1, 0.7, 0.7, 1)
