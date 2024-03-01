@@ -1,0 +1,47 @@
+<DiaryCalendarScreen>:
+    on_enter: self.upgrade_calendar()
+	BoxLayout:
+		orientation: 'vertical'
+
+		Button:
+			size_hint: 1, 0.05
+			text: '<'
+			on_press: root.manager.current = 'MenuScreen'
+
+		BoxLayout:
+			size_hint: 1, 0.05
+			Button:
+				size_hint: 0.33, 1
+				text: '<'
+				on_press: root.turn_left()
+			Button:
+				size_hint: 0.32, 1
+				text: 'Current'
+				on_press: root.set_date_current()
+			Button:
+				size_hint: 0.33, 1
+				text: '>'
+				on_press: root.turn_right()
+
+		Label:
+			size_hint: 1, 0.05
+			id: month_name_id
+			text: 'month'
+
+		StackLayout:
+			size_hint: 1, 0.65
+			GridLayout:
+				id: calendar
+				cols: 7
+		Label:
+			id: ChoosenDateLabel
+			size_hint: 1, 0.2
+			text: 'date'
+		Label:
+			id: RecordTextField
+			size_hint: 1, 0.2
+			text: 'Some Text Here'
+		Button:
+			size_hint: 1, 0.1
+			text: 'Change record'
+			on_press: root.manager.current = 'DiaryPageScreen'
