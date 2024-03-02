@@ -15,10 +15,39 @@ class TaskLoader():
         else:
             with open('.\\data\\tasks.json', 'r') as file:
                 self.tasks = json.load(file)
+
+        if('taskTags.json' not in os.listdir('.\\data')):
+            with open('.\\data\\taskTags.json', 'w') as file:
+                json.dump([], file)
+            self.tags = []
+        else:
+            with open('.\\data\\taskTags.json', 'r') as file:
+                self.tags = json.load(file)
             
     def save(self):
         with open('.\\data\\tasks.json', 'w') as file:
             json.dump(self.tasks, file)
+        with open('.\\data\\taskTags.json', 'w') as file:
+            json.dump(self.tags, file)
+
+    def addTag(self, tag):
+        self.tags.append(tag)
+        self.save()
+
+    def removeTag(self, tag):
+        self.tags.remove(tag)
+        self.save()
+    
+    def changeTag(self, tag, new_tag):
+        for i in range(len(self.tags)):
+            if(self.tags[i] == tag):
+                self.tags[i] = new_tag
+            
+        for task in self.tasks:
+            if(task['tag'] == tag):
+                task['tag'] = new_tag
+
+        self.save()
 
     def addTask(self, name, description, tag, deadline, duration, difficulty, importance, period, creationdate, done):
         with open('.\\data\\counters.json', 'r') as file:
