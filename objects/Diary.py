@@ -17,4 +17,17 @@ class Diary():
         record['text'] = text
         record['emoji'] = emoji
 
+    def remove_record(date):
+        for record in self.records:
+            if(record['date'] == date):
+                self.records.remove(record)
+                break
+
+    def change_record(self, date, text, emoji):
+        for record in self.records:
+            if(record['date'] == date):
+                record['text'] = text
+                record['emoji'] = emoji
+                break
+
     

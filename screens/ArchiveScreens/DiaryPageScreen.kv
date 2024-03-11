@@ -1,0 +1,146 @@
+<DiaryPageScreen>:
+	BoxLayout:
+		orientation: 'vertical'
+        
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    size_hint: 1, 0.05
+                    text: '<'
+                    on_press: root.manager.current = 'DiaryCalendarScreen'
+                ScrollView:
+                    size_hint: 1, 0.4
+                    GridLayout:
+                        size_hint: 1, 2
+                        cols: 4
+                        row_default_height: 60
+
+                        Button:
+                            text: 'happy'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\smile.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                                
+                        Button:
+                            text: 'very happy'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\smile-2.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'sad'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\sad.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'crying'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\sad-2.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'excited'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\excited.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'angry'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\tongue-out.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'crying'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\crying.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'cool'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\cool.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'sleepy'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\sleepy.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'disgusting'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\disgusting.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'thoughtful'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\thoughtful.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'fear'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\fear.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'Oh'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\oh.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'in love'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\love.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'like'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\like.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'silence'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\silence.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'tongue out'
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\tongue-out.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+
+                Label:
+                    size_hint: 1, 0.05
+                    text: 'My emoji today - '
+
+                TextInput:
+                    id: DiaryPageTextInput
+                    on_text: root.diary_page_changed()
