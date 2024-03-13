@@ -6,6 +6,7 @@
         root.togle_layout_visibility(False)
         root.refreshDatePicker()
         root.fill_todo_list()
+        root.refreshTagPicker()
     ScrollView:
         BoxLayout:
             orientation: 'vertical'
@@ -60,6 +61,33 @@
                     text: 'duration'
                 Button:
                     text: 'weighted mean'
+            
+            Label:
+                size_hint: 1, None
+                height: 25
+                text: 'Tag:'
+            Spinner:
+                id: tag_spinner
+                on_text: root.tag_select()
+            
+            TextInput:
+                id: tag_input
+            GridLayout:
+                rows: 1
+                cols: 4
+
+                Button:
+                    text: 'Add'
+                    on_press: root.add_tag_button_clicked()
+                Button:
+                    text: 'Save'
+                    on_press: root.save_tag_button_clicked()
+                Button:
+                    text: 'Delete'
+                    on_press: root.remove_tag_button_clicked()
+                Button:
+                    text: 'Cancel'
+                    on_press: root.cancel_tag_button_clicked()
 
             Label:
                 size_hint: 1, None
@@ -92,6 +120,10 @@
                 TextInput:
                     hint_text: 'description'
                     id: textinputTaskDescription
+
+            Spinner:
+                id: tag_chooser_spinner
+
             
             GridLayout:
                 size_hint: 1, None

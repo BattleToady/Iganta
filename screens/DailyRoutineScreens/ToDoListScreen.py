@@ -20,6 +20,44 @@ selected_task = None
 selected_date = str(datetime.now().year) + '-' + str(datetime.now().strftime('%m')) + '-' + str(datetime.now().day)
 
 class ToDoListScreen(Screen):
+    def refreshTagPicker(self):
+        self.ids.tag_spinner.values = loader.tags
+        self.ids.tag_spinner.text = ''
+
+        self.ids.tag_chooser_spinner.values = [''] + loader.tags
+        self.ids.tag_chooser_spinner.text = ''
+
+    def tag_select(self):
+        print('tag selected')
+        self.ids.tag_input.text = self.ids.tag_spinner.text
+
+    def add_tag_button_clicked(self):
+        tag_name = self.ids.tag_input.text
+        loader.addTag(tag_name)
+        self.cancel_tag_button_clicked()
+        self.refreshTagPicker()
+
+    def remove_tag_button_clicked(self):
+        tag_name = self.ids.tag_spinner.text
+        loader.removeTag(tag_name)
+        self.cancel_tag_button_clicked()
+        self.refreshTagPicker()
+
+    def save_tag_button_clicked(self):
+        tag_name = self.ids.tag_spinner.text
+        new_tag_name = self.ids.tag_input.text
+        loader.changeTag(tag_name, new_tag_name)
+        self.cancel_tag_button_clicked()
+        self.refreshTagPicker()
+
+    def cancel_tag_button_clicked(self):
+        self.ids.tag_input.text = ''
+        self.ids.tag_spinner.text = ''
+
+    
+
+        
+
     def refreshDatePicker(self):
         self.ids.year_spinner.text = str(datetime.now().year)
         self.ids.year_spinner.values = [str(year) for year in range(datetime.now().year, datetime.now().year+5)]
@@ -141,6 +179,8 @@ class ToDoListScreen(Screen):
 
         self.ids.slider_duration.value = selected_task['duration'][0] + 0.01*selected_task['duration'][1]*100/60
 
+        self.ids.tag_chooser_spinner.text = selected_task['tag']
+
         self.togle_layout_visibility(True)
 
     def importance_button_clicked(self, importance, button):
@@ -230,12 +270,14 @@ class ToDoListScreen(Screen):
         frac, whole = math.modf(self.ids.slider_duration.value)
         frac_part = f'{frac*60/100:1.2f}'.replace('0.', '')
 
+        tag_name = self.ids.tag_chooser_spinner.text
+
         global selected_date
         global loader
         loader.addTask(
             name = self.ids.textinputTask.text,
             description = self.ids.textinputTaskDescription.text,
-            tag = '',
+            tag = tag_name,
             deadline = selected_date,
             duration = (int(whole), int(frac_part)),
             difficulty = DIFFICULTY_SELECTED,
@@ -265,11 +307,13 @@ class ToDoListScreen(Screen):
         frac, whole = math.modf(self.ids.slider_duration.value)
         frac_part = f'{frac*60/100:1.2f}'.replace('0.', '')
 
+        tag_name = self.ids.tag_chooser_spinner.text
+
         global selected_task
         global selected_date
         selected_task['name'] = self.ids.textinputTask.text
         selected_task['description'] = self.ids.textinputTaskDescription.text
-        selected_task['tag'] = ''
+        selected_task['tag'] = tag_name
         selected_task['deadline'] = None
         selected_task['duration'] = (int(whole), int(frac_part))
         selected_task['difficulty'] = DIFFICULTY_SELECTED
@@ -282,3 +326,4 @@ class ToDoListScreen(Screen):
         loader.modify_task(selected_task)
         self.ids.layout_task_bucket.clear_widgets()
         self.fill_bucket_list()
+        self.fill_todo_list()

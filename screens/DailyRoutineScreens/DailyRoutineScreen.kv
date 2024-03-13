@@ -27,9 +27,11 @@
 
                     Button:
                         text: 'Make Diary Record'
+                        on_press: app.get_running_app().root.current = 'DiaryCalendarScreen'
 
                     Button:
                         text: 'Add New Idea'
+                        on_press: app.get_running_app().root.current = 'IdeaBucketScreen'
 
                 Button:
                     height: 50

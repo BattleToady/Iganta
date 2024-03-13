@@ -1,0 +1,171 @@
+<DiaryPageScreen>:
+    on_enter: self.on_page_enter()
+	BoxLayout:
+		orientation: 'vertical'
+        
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    size_hint: 1, 0.05
+                    text: '<'
+                    on_press: 
+                        root.manager.current = 'DiaryCalendarScreen'
+                        root.back_button_pressed()
+                ScrollView:
+                    size_hint: 1, 0.4
+                    GridLayout:
+                        size_hint: 1, 2
+                        cols: 4
+                        row_default_height: 60
+
+                        Button:
+                            text: 'happy'
+                            on_press: root.emoji_button_clicked('happy')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\smile.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                                
+                                
+                        Button:
+                            text: 'very happy'
+                            on_press: root.emoji_button_clicked('very happy')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\smile-2.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'sad'
+                            on_press: root.emoji_button_clicked('sad')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\sad.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'crying'
+                            on_press: root.emoji_button_clicked('crying')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\sad-2.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'excited'
+                            on_press: root.emoji_button_clicked('excited')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\excited.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'angry'
+                            on_press: root.emoji_button_clicked('angry')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\tongue-out.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'crying'
+                            on_press: root.emoji_button_clicked('crying')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\crying.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'cool'
+                            on_press: root.emoji_button_clicked('cool')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\cool.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'sleepy'
+                            on_press: root.emoji_button_clicked('sleepy')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\sleepy.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'disgusting'
+                            on_press: root.emoji_button_clicked('disgusting')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\disgusting.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'thoughtful'
+                            on_press: root.emoji_button_clicked('thoughtful')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\thoughtful.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'fear'
+                            on_press: root.emoji_button_clicked('fear')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\fear.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'Oh'
+                            on_press: root.emoji_button_clicked('Oh')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\oh.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'in love'
+                            on_press: root.emoji_button_clicked('in love')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\love.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'like'
+                            on_press: root.emoji_button_clicked('like')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\like.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'silence'
+                            on_press: root.emoji_button_clicked('silence')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\silence.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                        Button:
+                            text: 'tongue out'
+                            on_press: root.emoji_button_clicked('tongue out')
+                            Image:
+                                x: self.parent.x + 2
+                                y: self.parent.y + 2
+                                source: 'icons\\emoji\\tongue-out.png'
+                                size: (self.parent.height - 2, self.parent.height - 2)
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint: 1, 0.05
+
+                    Label:
+                        text: 'My emoji today - '
+                    Label:
+                        id: label_current_emoji
+                        text: ''
+
+                TextInput:
+                    id: DiaryPageTextInput

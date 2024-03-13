@@ -1,0 +1,78 @@
+<IdeaBucketScreen>:
+    on_enter: root.refresh_idea_tree()
+    BoxLayout:
+        orientation: 'vertical'
+
+        Button:
+            size_hint: 1, None
+            height: 20
+            text: '<'
+            on_press: root.manager.current = 'MenuScreen'
+
+        GridLayout:
+            rows: 1
+            cols: 2
+
+            TreeView:
+                id: ideaBucketTreeView
+                hide_root: True
+
+            ScrollView:
+                BoxLayout:
+                    orientation: 'vertical'
+                    TextInput:
+                        id: tagNameInput
+                        text_hint: 'tag name'
+                        height: 35
+                    GridLayout:
+                        rows: 1
+                        cols: 4
+                        Button:
+                            text: 'Add tag'
+                            on_press: root.add_tag_button_clicked()
+                            height: 35
+                        Button:
+                            text: 'Save'
+                            on_press: root.save_tag_button_clicked()
+                            height: 35
+                        Button:
+                            text: 'Clear'
+                            on_press: 
+                                root.deselect_node()
+                                root.clear_tag_button_clicked()
+                        Button:
+                            text: 'Delete'
+                            on_press:
+                                root.delete_tag_button_clicked()
+                    TextInput:
+                        id: ideaNameInput
+                        text_hint: 'idea name'
+                        height: 35
+                    TextInput:
+                        id: ideaDescriptionInput
+                        text_hint: 'idea description'
+                        size_hint: 1, None
+                    Spinner:
+                        id: tag_spinner
+                    GridLayout:
+                        rows: 1
+                        cols: 4
+
+                        Button:
+                            text: 'Add'
+                            on_press: root.add_idea_button_clicked()
+                        Button:
+                            text: 'Save'
+                            on_press: root.save_idea_button_clicked()
+                        Button:
+                            text: 'Clear'
+                            on_press: 
+                                root.deselect_node()
+                                root.clear_idea_button_clicked()
+                        Button:
+                            text: 'Delete'
+                            on_press: root.delete_idea_button_clicked()
+
+
+
+    
