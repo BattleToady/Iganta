@@ -1,4 +1,5 @@
 <DiaryPageScreen>:
+    on_enter: self.on_page_enter()
 	BoxLayout:
 		orientation: 'vertical'
         
@@ -8,7 +9,9 @@
                 Button:
                     size_hint: 1, 0.05
                     text: '<'
-                    on_press: root.manager.current = 'DiaryCalendarScreen'
+                    on_press: 
+                        root.manager.current = 'DiaryCalendarScreen'
+                        root.back_button_pressed()
                 ScrollView:
                     size_hint: 1, 0.4
                     GridLayout:
@@ -18,14 +21,17 @@
 
                         Button:
                             text: 'happy'
+                            on_press: root.emoji_button_clicked('happy')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
                                 source: 'icons\\emoji\\smile.png'
                                 size: (self.parent.height - 2, self.parent.height - 2)
                                 
+                                
                         Button:
                             text: 'very happy'
+                            on_press: root.emoji_button_clicked('very happy')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -33,6 +39,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'sad'
+                            on_press: root.emoji_button_clicked('sad')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -40,6 +47,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'crying'
+                            on_press: root.emoji_button_clicked('crying')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -47,6 +55,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'excited'
+                            on_press: root.emoji_button_clicked('excited')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -54,6 +63,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'angry'
+                            on_press: root.emoji_button_clicked('angry')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -61,6 +71,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'crying'
+                            on_press: root.emoji_button_clicked('crying')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -68,6 +79,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'cool'
+                            on_press: root.emoji_button_clicked('cool')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -75,6 +87,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'sleepy'
+                            on_press: root.emoji_button_clicked('sleepy')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -82,6 +95,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'disgusting'
+                            on_press: root.emoji_button_clicked('disgusting')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -89,6 +103,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'thoughtful'
+                            on_press: root.emoji_button_clicked('thoughtful')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -96,6 +111,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'fear'
+                            on_press: root.emoji_button_clicked('fear')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -103,6 +119,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'Oh'
+                            on_press: root.emoji_button_clicked('Oh')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -110,6 +127,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'in love'
+                            on_press: root.emoji_button_clicked('in love')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -117,6 +135,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'like'
+                            on_press: root.emoji_button_clicked('like')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -124,6 +143,7 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'silence'
+                            on_press: root.emoji_button_clicked('silence')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
@@ -131,16 +151,21 @@
                                 size: (self.parent.height - 2, self.parent.height - 2)
                         Button:
                             text: 'tongue out'
+                            on_press: root.emoji_button_clicked('tongue out')
                             Image:
                                 x: self.parent.x + 2
                                 y: self.parent.y + 2
                                 source: 'icons\\emoji\\tongue-out.png'
                                 size: (self.parent.height - 2, self.parent.height - 2)
-
-                Label:
+                BoxLayout:
+                    orientation: 'horizontal'
                     size_hint: 1, 0.05
-                    text: 'My emoji today - '
+
+                    Label:
+                        text: 'My emoji today - '
+                    Label:
+                        id: label_current_emoji
+                        text: ''
 
                 TextInput:
                     id: DiaryPageTextInput
-                    on_text: root.diary_page_changed()

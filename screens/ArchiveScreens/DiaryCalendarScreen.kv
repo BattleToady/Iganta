@@ -1,5 +1,7 @@
 <DiaryCalendarScreen>:
-    on_enter: self.upgrade_calendar()
+    on_pre_enter: 
+		self.upgrade_calendar()
+	on_enter: self.upgrade_emoji()
 	BoxLayout:
 		orientation: 'vertical'
 
@@ -36,11 +38,11 @@
 		Label:
 			id: ChoosenDateLabel
 			size_hint: 1, 0.2
-			text: 'date'
+			text: ''
 		Label:
 			id: RecordTextField
 			size_hint: 1, 0.2
-			text: 'Some Text Here'
+			text: ''
 		Button:
 			size_hint: 1, 0.1
 			text: 'Change record'

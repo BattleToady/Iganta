@@ -9,6 +9,9 @@ from screens.IdeaBucketScreen.IdeaBucketScreen import IdeaBucketScreen
 from screens.ArchiveScreens.DiaryCalendarScreen import DiaryCalendarScreen
 from screens.ArchiveScreens.DiaryPageScreen import DiaryPageScreen
 from objects.Task import TaskLoader
+from datetime import date
+from kivy.core.window import Window
+
 
 Builder.load_file('MenuScreen.kv')
 Builder.load_file('.\screens\DailyRoutineScreens\DailyRoutineScreen.kv') 
@@ -22,7 +25,9 @@ class igantaApp(App):
 	taskLoader = TaskLoader()
 	
 	def build(self):
-	
+		selected_date = date.today()
+		
+		App.get_running_app().diary_selected_date = str(selected_date.day) + '-' + str(selected_date.month) + '-' + str(selected_date.year)
 		sm = ScreenManager()
 		sm.add_widget(MenuScreen(name = 'MenuScreen'))
 		sm.add_widget(ToDoListScreen(name = 'ToDoListScreen'))
