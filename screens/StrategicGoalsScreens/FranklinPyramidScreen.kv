@@ -1,0 +1,121 @@
+<FranklinPyramidScreen>:
+    on_enter: self.update_piramid()
+	BoxLayout:
+		orientation: 'vertical'
+		Button:
+			size_hint: 1, 0.05
+			text: '<'
+			on_press: root.manager.current = 'MenuScreen'
+
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint: 0.9, 0.8
+			pos_hint: {'y' : 0.025}
+			BoxLayout:
+				orientation: 'vertical'
+				pos_hint: {'x' : 0.225}
+				size_hint: 0.65, 0.125
+				canvas:
+					Color:
+						rgb: 0.9, 0.9, 0.9
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				Label:
+					size_hint: 1, 0.333
+					text: 'План на день/неділю:'
+					color: 0, 0, 0, 1
+				TextInput:
+					id: shortTermPlanTextInput
+					hint_text: 'План на день/неділю'
+					on_text: root.textInputChanged()
+			BoxLayout:
+				orientation: 'vertical'
+				pos_hint: {'x' : 0.2}
+				size_hint: 0.7, 0.125
+				canvas:
+					Color:
+						rgb: 0.9, 0.9, 0.9
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				Label:
+					size_hint: 1, 0.333
+					text: 'Середньостроковий план(місяці)'
+					color: 0, 0, 0, 1
+				TextInput:
+					id: middleTermPlanTextInput
+					hint_text: 'Середньостроковий план(місяці)'
+					on_text: root.textInputChanged()
+			BoxLayout:
+				orientation: 'vertical'
+				pos_hint: {'x' : 0.175}
+				size_hint: 0.75, 0.125
+				canvas:
+					Color:
+						rgb: 0.9, 0.9, 0.9
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				Label:
+					size_hint: 1, 0.333
+					text: 'Довгостроковий план(роки)'
+					color: 0, 0, 0, 1
+				TextInput:
+					id: longTermPlanTextInput
+					hint_text: 'Довгостроковий план(роки)'
+					on_text: root.textInputChanged()
+			BoxLayout:
+				orientation: 'vertical'
+				pos_hint: {'x' : 0.15}
+				size_hint: 0.8, 0.125
+				canvas:
+					Color:
+						rgb: 0.9, 0.9, 0.9
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				Label:
+					size_hint: 1, 0.333
+					text: 'Генеральний план досягнення цілей'
+					color: 0, 0, 0, 1
+				TextInput:
+					id: generalPlanTextInput
+					hint_text: 'Генеральний план досягнення цілей'
+					on_text: root.textInputChanged()
+			BoxLayout:
+				orientation: 'vertical'
+				pos_hint: {'x' : 0.125}
+				size_hint: 0.85, 0.125
+				canvas:
+					Color:
+						rgb: 0.9, 0.9, 0.9
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				Label:
+					size_hint: 1, 0.333
+					text: 'Глобальні цілі(ким стати, чого добитися)'
+					color: 0, 0, 0, 1
+				TextInput:
+					id: globalMarksTextInput
+					hint_text: 'Глобальні цілі(ким стати, чого добитися)'
+					on_text: root.textInputChanged()
+			BoxLayout:
+				orientation: 'vertical'
+				pos_hint: {'x' : 0.1}
+				size_hint: 0.9, 0.125
+				canvas:
+					Color:
+						rgb: 0.9, 0.9, 0.9
+					Rectangle:
+						pos: self.pos
+						size: self.size
+				Label:
+					size_hint: 1, 0.333
+					text: 'Основні життєві цінності(чого я хочу від життя)'
+					color: 0, 0, 0, 1
+				TextInput:
+					id: mainValuesTextInput
+					hint_text: 'Основні життєві цінності(чого я хочу від життя)'
+					on_text: root.textInputChanged()
