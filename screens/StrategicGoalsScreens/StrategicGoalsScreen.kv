@@ -1,0 +1,19 @@
+<StrategicGoalsScreen>:
+	BoxLayout:
+        canvas.before:
+            Color:
+                rgba: 0.5, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        ScrollView:
+            GridLayout:
+                rows: 5
+
+                Button:
+                    text: 'Spheres Of Life'
+                    on_press: app.get_running_app().root.current = 'SpheresOfLifeScreen'
+                Button:
+                Button:
+                Button:
+                Button:

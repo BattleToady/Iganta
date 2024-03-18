@@ -1,0 +1,92 @@
+<SpheresOfLifeScreen>:
+    on_pre_enter: self.SpheresOfLifeScreenPreEnter()
+    on_enter: self.rebuildSpheres()
+    on_size: self.rebuildSpheres() 
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            size_hint: 1, 0.05
+            text: '<'
+            on_press: root.manager.current = 'MenuScreen'
+        BoxLayout:
+            ScrollView:
+                size_hint: 0.6, 0.9
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: 1, 2.5
+                    Button:
+                        size_hint: 1, 0.25
+                        on_press: root.generalSphereClicked()
+                        id: GeneralSphere
+                    GridLayout:
+                        cols: 2
+                        rows: 4
+
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'health Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.healthSphereClicked()
+                                id: HealthSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'relationship Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.relationshipSphereClicked()
+                                id: RelationshipSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'environment Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.environmentSphereClicked()
+                                id: EnvironmentSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'vocation Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.vocationSphereClicked()
+                                id: VocationSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'independence Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.independenceSphereClicked()
+                                id: IdependenceSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'selfdevelopment Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.selfdevelopmentSphereClicked()
+                                id: SelfdevelopmentSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'brightness Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.brightnessSphereClicked()
+                                id: BrightnessSphere
+                        BoxLayout:
+                            orientation: 'vertical'
+                            Label:
+                                text: 'spirituality Sphere:'
+                                size_hint: 1, 0.125
+                            Button:
+                                on_press: root.spiritualitySphereClicked()
+                                id: SpiritualitySphere
+            BoxLayout:
+                id: layout_sliders
+                orientation: 'vertical'
+                size_hint: 0.35, 1
