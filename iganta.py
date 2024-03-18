@@ -5,7 +5,7 @@ from MenuScreen import MenuScreen
 from screens.DailyRoutineScreens.DailyRoutineScreen import DailyRoutineScreen
 from screens.StrategicGoalsScreens.StrategicGoalsScreen import StrategicGoalsScreen
 from screens.DailyRoutineScreens.ToDoListScreen import ToDoListScreen
-from screens.IdeaBucketScreen.IdeaBucketScreen import IdeaBucketScreen
+from screens.ArchiveScreens.IdeaBucketScreen.IdeaBucketScreen import IdeaBucketScreen
 from screens.ArchiveScreens.DiaryCalendarScreen import DiaryCalendarScreen
 from screens.ArchiveScreens.DiaryPageScreen import DiaryPageScreen
 from objects.Task import TaskLoader
@@ -19,7 +19,7 @@ Builder.load_file('MenuScreen.kv')
 Builder.load_file('.\screens\DailyRoutineScreens\DailyRoutineScreen.kv') 
 Builder.load_file('.\screens\StrategicGoalsScreens\StrategicGoalsScreen.kv') 
 Builder.load_file('.\screens\DailyRoutineScreens\ToDoListScreen.kv') 
-Builder.load_file('.\screens\IdeaBucketScreen\IdeaBucketScreen.kv') 
+Builder.load_file('.\screens\ArchiveScreens\IdeaBucketScreen\IdeaBucketScreen.kv') 
 Builder.load_file('.\screens\ArchiveScreens\DiaryCalendarScreen.kv')
 Builder.load_file('.\screens\ArchiveScreens\DiaryPageScreen.kv')
 Builder.load_file('.\screens\StrategicGoalsScreens\SpheresOfLifeScreen.kv')
