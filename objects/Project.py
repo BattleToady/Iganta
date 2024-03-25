@@ -81,7 +81,20 @@ class ProjectReader():
 
     def add_phase(self, project_id, name, percent, criteria):
         project = self.get_project(project_id)
-        project['phases'].append({'pos' : self.get_pos(project_id), 'name' : name, 'percent' : percent, 'criteria' : criteria, 'tasks' : []})
+        if(name == ''):
+            counter = 0
+            pr = True
+            while(pr):
+                pr = False
+                for phase in project['phases']:
+                    pr = False
+                    if(phase['name'] == f'NewPhase-{counter}'):
+                        counter += 1
+                        pr = True
+                        continue
+            name = f'NewPhase-{counter}'
+        
+        project['phases'].append({'pos' : self.get_phase_pos(project_id), 'name' : name, 'percent' : percent, 'criteria' : criteria, 'tasks' : []})
         self.save()
 
     def get_phase(self, project_id, phase_pos):

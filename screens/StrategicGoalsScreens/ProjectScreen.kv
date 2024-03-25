@@ -44,7 +44,13 @@
                 text: 'Plan:'
             ScrollView:
                 BoxLayout:
-                    Button:
-                        text:'Add Phase'
+                    orientation: 'vertical'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        id: plan_layout
+                    BoxLayout:
+                        Button:
+                            text:'Add Phase'
+                            on_press: root.add_phase_button_clicked()
             
             Label:
