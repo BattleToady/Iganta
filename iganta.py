@@ -13,7 +13,7 @@ from datetime import date
 from kivy.core.window import Window
 from screens.StrategicGoalsScreens.SpheresOfLifeScreen import SpheresOfLifeScreen
 from screens.StrategicGoalsScreens.FranklinPyramidScreen import FranklinPyramidScreen
-
+from screens.StrategicGoalsScreens.ProjectScreen import ProjectScreen
 
 Builder.load_file('MenuScreen.kv')
 Builder.load_file('.\screens\DailyRoutineScreens\DailyRoutineScreen.kv') 
@@ -24,6 +24,7 @@ Builder.load_file('.\screens\ArchiveScreens\DiaryCalendarScreen.kv')
 Builder.load_file('.\screens\ArchiveScreens\DiaryPageScreen.kv')
 Builder.load_file('.\screens\StrategicGoalsScreens\SpheresOfLifeScreen.kv')
 Builder.load_file('.\screens\StrategicGoalsScreens\FranklinPyramidScreen.kv')
+Builder.load_file('.\screens\StrategicGoalsScreens\ProjectScreen.kv')
 
 class igantaApp(App):
 	taskLoader = TaskLoader()
@@ -40,6 +41,7 @@ class igantaApp(App):
 		sm.add_widget(DiaryPageScreen(name = 'DiaryPageScreen'))
 		sm.add_widget(SpheresOfLifeScreen(name = 'SpheresOfLifeScreen'))
 		sm.add_widget(FranklinPyramidScreen(name = 'FranklinPyramidScreen'))
+		sm.add_widget(ProjectScreen(name = 'ProjectScreen'))
 		return sm
 
 if __name__ == '__main__':

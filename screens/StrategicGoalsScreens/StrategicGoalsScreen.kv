@@ -1,14 +1,22 @@
 <StrategicGoalsScreen>:
+    on_kv_post: root.update_projects_layout()
 	BoxLayout:
-        canvas.before:
-            Color:
-                rgba: 0.5, 1, 1, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
         ScrollView:
-            GridLayout:
-                rows: 5
+            BoxLayout:
+                orientation: 'vertical'
+                ScrollView:
+                    size_hint: 1, 4
+                    BoxLayout:
+                        size_hint: 1, 2
+                        orientation: 'vertical'
+                        GridLayout:
+                            cols: 6
+                            size_hint: 1, 2
+                            id: projectsLayout
+
+                Button:
+                    text: 'add Project'
+                    on_press: root.add_project_button_clicked()
 
                 Button:
                     text: 'Spheres Of Life'

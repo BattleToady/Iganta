@@ -16,7 +16,7 @@ class ProjectReader():
 
     def save(self):
         with open('.\\data\\projects.json', 'w') as file:
-            json.dump([], file)
+            json.dump(self.projects, file)
 
     def get_id(self):
         max_id = 0
@@ -34,6 +34,18 @@ class ProjectReader():
                 return project
 
     def create_project(self, name, mark, reason, criteria):
+        if(name == ''):
+            counter = 0
+            pr = True
+            while(pr):
+                pr = False
+                for project in self.projects:
+                    pr = False
+                    if(project['name'] == f'NewProject-{counter}'):
+                        counter += 1
+                        pr = True
+                        continue
+            name = f'NewProject-{counter}'
         self.projects.append({'id' : self.get_id(),'name' : name, 'mark' : mark, 'reason' : reason, 'criteria' : criteria, 'phases' : []})
         self.save()
 

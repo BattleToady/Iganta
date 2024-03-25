@@ -1,0 +1,50 @@
+<ProjectScreen>:
+    on_pre_enter:
+        root.pre_enter()
+    ScrollView:
+        BoxLayout:
+            size_hint: 1, 2
+            orientation: 'vertical'
+            Button:
+                size_hint: 1, None
+                height: 25
+                text: '<'
+                on_press: root.manager.current = 'MenuScreen'
+            TextInput:
+                height: 25
+                id: name_input
+                hint_text: 'name'
+            TextInput:
+                height: 25
+                id: mark_input
+                hint_text: 'mark'
+            TextInput:
+                height: 25
+                id: reason_input
+                hint_text: 'reason'
+            TextInput:
+                height: 25
+                id: criteria_input
+                hint_text: 'criteria'
+                on_text:
+                    root.text_input_changed()
+            BoxLayout:
+                height: 25
+                orientation: 'horizontal'
+                ProgressBar: 
+                    size_hint: 0.8, None
+                    value: .25
+                    min: 0
+                    max: 1
+                Label:
+                    size_hint: 0.2, None
+                    text: '25%'
+            Label:
+                height: 25
+                text: 'Plan:'
+            ScrollView:
+                BoxLayout:
+                    Button:
+                        text:'Add Phase'
+            
+            Label:
