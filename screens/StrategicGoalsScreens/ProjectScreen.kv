@@ -45,12 +45,55 @@
             ScrollView:
                 BoxLayout:
                     orientation: 'vertical'
-                    BoxLayout:
-                        orientation: 'vertical'
-                        id: plan_layout
-                    BoxLayout:
-                        Button:
-                            text:'Add Phase'
-                            on_press: root.add_phase_button_clicked()
+                    ScrollView:
+                        size_hint: 1, None
+                        height: 100
+                        BoxLayout:
+                            TreeView:
+                                id: planTree
+                                hide_root: True
+            BoxLayout:
+                Button:
+                    text:'Add Phase'
+                    on_press: root.add_phase_button_clicked()
+                TextInput:
+                    id: phase_name_input
+                    hint_text: 'phase name'
+                Button:
+                    text: 'remove phase'
+                    on_press: root.remove_phase_button_clicked()
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Button:
+                        text: 'up'
+                        on_press: root.increase_phase_pos()
+                    Button:
+                        text: 'down'
+                        on_press: root.decrease_phase_pos()
+                Button:
+                    text: 'Save'
+                    on_press: root.save_phase_changes()
+            BoxLayout:
+                Button:
+                    text: 'add task'
+                    on_press: root.add_task_button_clicked()
+                TextInput:
+                    id: task_name_input
+                    hint_text: 'task name'
+                Button:
+                    text: 'create task in to-do bucket'
+                Button:
+                    text: 'up'
+                    on_press: root.increase_task_pos()
+                Button:
+                    text: 'down'
+                    on_press: root.decrease_task_pos()
+                Button:
+                    text: 'remove task'
+                    on_press: root.remove_task_button_clicked()
+                Button:
+                    text: 'Save'
+                    on_press: root.save_task_changes()
+
             
             Label:

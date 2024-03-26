@@ -57,6 +57,70 @@ class ProjectReader():
         project['criteria'] = criteria
         self.save()
 
+    def update_phase(self, project_id, phase_pos, name, criteria):
+        phase = self.get_phase(project_id, phase_pos)
+        phase['name'] = name
+        phase['criteria'] = criteria
+        self.save()
+    
+    def update_task(self, project_id, phase_pos, task_pos, name):
+        task = self.get_task(project_id, phase_pos, task_pos)
+        task['name'] = name
+        self.save()
+
+    def change_phase_pos(self, project_id, phase_pos, decr):
+        project = self.get_project(project_id)
+        max_pos = 0
+        for phase in project['phases']:
+            if(phase['pos'] > max_pos):
+                max_pos = phase['pos']
+        if(not decr):
+            new_pos = phase_pos + 1
+            if(new_pos > max_pos):
+                return 1
+        else:
+            new_pos = phase_pos - 1
+            if(new_pos < 0):
+                return 1
+        replaced_phase = self.get_phase(project_id, new_pos)
+        moved_phase = self.get_phase(project_id, phase_pos)
+        replaced_phase['pos'] = phase_pos
+        moved_phase['pos'] = new_pos
+        self.save()
+
+    def change_task_pos(self, project_id, phase_pos, task_pos, decr):
+        phase = self.get_phase(project_id, phase_pos)
+        max_pos = 0
+        for task in phase['tasks']:
+            if(task['pos'] > max_pos):
+                max_pos = task['pos']
+        if(not decr):
+            new_pos = phase_pos + 1
+            if(new_pos > max_pos):
+                return 1
+        else:
+            new_pos = phase_pos - 1
+            if(new_pos < 0):
+                return 1
+        replaced_task = self.get_task(project_id, phase_pos, new_pos)
+        moved_task = self.get_task(project_id, phase_pos, task_pos)
+        print(phase_pos)
+        print(new_pos)
+        replaced_task['pos'] = phase_pos
+        moved_task['pos'] = new_pos
+        self.save()
+
+
+
+    def get_task(self, project_id, phase_pos, task_pos):
+        for project in self.projects:
+            if(project['id'] == project_id):
+                for phase in project['phases']:
+                    if(phase['pos'] == phase_pos):
+                        for task in phase['tasks']:
+                            if(task['pos'] == task_pos):
+                                return task
+
     def get_phase_pos(self, id):
         project = self.get_project(id)
         max_pos = 0
@@ -96,6 +160,21 @@ class ProjectReader():
         
         project['phases'].append({'pos' : self.get_phase_pos(project_id), 'name' : name, 'percent' : percent, 'criteria' : criteria, 'tasks' : []})
         self.save()
+    
+    def find_phase_by_name(self, project_id, phase_name):
+        project = self.get_project(project_id)
+        for phase in project['phases']:
+            if(phase['name'] == phase_name):
+                return phase
+            
+    def find_task_by_name(self, project_id, phase_pos, task_name):
+        project = self.get_project(project_id)
+        for phase in project['phases']:
+            if(phase['pos'] == phase_pos):
+                for task in phase['tasks']:
+                    if(task['name'] == task_name):
+                        return task
+
 
     def get_phase(self, project_id, phase_pos):
         project = self.get_project(project_id)
@@ -105,6 +184,17 @@ class ProjectReader():
 
     def add_task(self, project_id, phase_pos, name):
         phase = self.get_phase(project_id, phase_pos)
+        if(name == ''):
+            for task in phase['tasks']:
+                counter = 0
+                pr = True
+                while(pr):
+                    pr = False
+                    if(phase['name'] == f'NewTask-{counter}'):
+                        counter += 1
+                        pr = True
+                        continue
+                name = f'NewTask-{counter}'
         phase['tasks'].append({'pos' : self.get_task_pos(project_id, phase_pos), 'name' : name, 'id' : None})
         self.save()
 
@@ -112,5 +202,11 @@ class ProjectReader():
         phase = self.get_phase(project_id, phase_pos)
         for task in phase['tasks']:
             if(task['pos'] == task_pos):
-                phase.remove(task)
+                phase['tasks'].remove(task)
+        self.save()
+
+    def remove_phase(self, project_id, phase_pos):
+        project = self.get_project(project_id)
+        phase = self.get_phase(project_id, phase_pos)
+        project['phases'].remove(phase)
         self.save()
