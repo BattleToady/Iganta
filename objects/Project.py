@@ -57,15 +57,17 @@ class ProjectReader():
         project['criteria'] = criteria
         self.save()
 
-    def update_phase(self, project_id, phase_pos, name, criteria):
+    def update_phase(self, project_id, phase_pos, name, criteria, percent):
         phase = self.get_phase(project_id, phase_pos)
         phase['name'] = name
         phase['criteria'] = criteria
+        phase['percent'] = percent
         self.save()
     
-    def update_task(self, project_id, phase_pos, task_pos, name):
+    def update_task(self, project_id, phase_pos, task_pos, name, done):
         task = self.get_task(project_id, phase_pos, task_pos)
         task['name'] = name
+        task['done'] = done
         self.save()
 
     def change_phase_pos(self, project_id, phase_pos, decr):
@@ -95,18 +97,16 @@ class ProjectReader():
             if(task['pos'] > max_pos):
                 max_pos = task['pos']
         if(not decr):
-            new_pos = phase_pos + 1
+            new_pos = task_pos + 1
             if(new_pos > max_pos):
                 return 1
         else:
-            new_pos = phase_pos - 1
+            new_pos = task_pos - 1
             if(new_pos < 0):
                 return 1
         replaced_task = self.get_task(project_id, phase_pos, new_pos)
         moved_task = self.get_task(project_id, phase_pos, task_pos)
-        print(phase_pos)
-        print(new_pos)
-        replaced_task['pos'] = phase_pos
+        replaced_task['pos'] = task_pos
         moved_task['pos'] = new_pos
         self.save()
 
@@ -190,12 +190,12 @@ class ProjectReader():
                 pr = True
                 while(pr):
                     pr = False
-                    if(phase['name'] == f'NewTask-{counter}'):
+                    if(task['name'] == f'NewTask-{counter}'):
                         counter += 1
                         pr = True
                         continue
                 name = f'NewTask-{counter}'
-        phase['tasks'].append({'pos' : self.get_task_pos(project_id, phase_pos), 'name' : name, 'id' : None})
+        phase['tasks'].append({'pos' : self.get_task_pos(project_id, phase_pos), 'name' : name, 'id' : None, 'done' : False})
         self.save()
 
     def remove_task(self, project_id, phase_pos, task_pos):

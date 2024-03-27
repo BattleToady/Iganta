@@ -13,7 +13,18 @@ class StrategicGoalsScreen(Screen):
 
     def update_projects_layout(self):
         for project in projectReader.projects:
-            projectButton = Button(text = project['name'] + '\n' + '25%')
+            progress = 0
+            for phase in project['phases']:
+                phase_max_progress = phase['percent']
+                done_tasks_count = 0
+                tasks_count = 0
+                for task in phase['tasks']:
+                    tasks_count += 1
+                    if(task['done']):
+                        done_tasks_count += 1
+                if(tasks_count != 0):
+                    progress += phase_max_progress * (done_tasks_count/tasks_count)
+            projectButton = Button(text = f'{project['name']}\n{progress:.1f}%')
             projectButton.height = 60
             projectButton.bind(on_press = partial(self.project_button_clicked, project['id']))
             self.ids.projectsLayout.add_widget(projectButton)

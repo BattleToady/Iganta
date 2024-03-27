@@ -12,33 +12,37 @@
                 on_press: root.manager.current = 'MenuScreen'
             TextInput:
                 height: 25
-                id: name_input
+                id: project_name_input
                 hint_text: 'name'
             TextInput:
                 height: 25
-                id: mark_input
+                id: project_mark_input
                 hint_text: 'mark'
             TextInput:
                 height: 25
-                id: reason_input
+                id: project_reason_input
                 hint_text: 'reason'
             TextInput:
                 height: 25
-                id: criteria_input
+                id: project_criteria_input
                 hint_text: 'criteria'
-                on_text:
-                    root.text_input_changed()
+            Button:
+                text: 'Save'
+                on_press:
+                    root.project_changes_save()
             BoxLayout:
                 height: 25
                 orientation: 'horizontal'
                 ProgressBar: 
+                    id: project_progress_bar
                     size_hint: 0.8, None
-                    value: .25
+                    value: 0
                     min: 0
-                    max: 1
+                    max: 100
                 Label:
+                    id: progress_label
                     size_hint: 0.2, None
-                    text: '25%'
+                    text: '0%'
             Label:
                 height: 25
                 text: 'Plan:'
@@ -59,6 +63,9 @@
                 TextInput:
                     id: phase_name_input
                     hint_text: 'phase name'
+                TextInput:
+                    id: phase_criteria_input
+                    hint_text: 'phase criteria'
                 Button:
                     text: 'remove phase'
                     on_press: root.remove_phase_button_clicked()
@@ -72,11 +79,17 @@
                         on_press: root.decrease_phase_pos()
                 Button:
                     text: 'Save'
-                    on_press: root.save_phase_changes()
+                    on_press: 
+                        root.save_phase_changes()
+                        root.deselect_node()
+                Spinner:
+                    id: phase_percent_spinner
             BoxLayout:
                 Button:
                     text: 'add task'
                     on_press: root.add_task_button_clicked()
+                CheckBox:
+                    id: task_done_checkbox
                 TextInput:
                     id: task_name_input
                     hint_text: 'task name'
@@ -93,7 +106,9 @@
                     on_press: root.remove_task_button_clicked()
                 Button:
                     text: 'Save'
-                    on_press: root.save_task_changes()
+                    on_press: 
+                        root.save_task_changes()
+                        root.deselect_node()
 
             
             Label:
